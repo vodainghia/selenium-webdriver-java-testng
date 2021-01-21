@@ -11,10 +11,7 @@ public class Topic_01_Check_Environment {
 	
 	@BeforeClass
 	public void beforeClass() {
-		//Mo trinh duyet
 		driver = new FirefoxDriver();
-		
-		//Mo app
 		driver.get("https://www.google.com/?gws_rd=ssl");
 	}
 	
@@ -25,7 +22,6 @@ public class Topic_01_Check_Environment {
   
 	@AfterClass
 	public void afterClass() {
-		//Dong trinh duyet
 		driver.quit();
 	}
 
