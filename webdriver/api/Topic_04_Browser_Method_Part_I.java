@@ -19,7 +19,7 @@ public class Topic_04_Browser_Method_Part_I {
 	}
 	
 	@Test
-	public void TC_00() {
+	public void TC_00_Browser_Element_Commnad() {
 		//Các gàm/ method/ command để tương tác với web browser thì sẽ qua driver.hàm()
 		//Các gàm/ method/ command để tương tác với web element thì sẽ qua driver.findElement(By.x)
 		
