@@ -228,72 +228,55 @@ public class Topic_05_Element_Method_Part_II {
 	}
 	
 	@Test
-	public void TC_04_Register_func_at_MailChimp() {
+	public void TC_04_Register_func_at_MailChimp() throws InterruptedException  {
 		driver.get("https://login.mailchimp.com/signup/");
 		
 		WebElement password = driver.findElement(By.xpath("//input[@id='new_password']"));
+		WebElement createAccButtonBtn = driver.findElement(By.xpath("//button[@id='create-account']"));
 		
 		driver.findElement(By.xpath("//input[@id='email']")).sendKeys("nghiatest01@gmail.com");
 		
 		driver.findElement(By.xpath("//input[@id='new_username']")).sendKeys("Nghiatest");
 		
-		Boolean lowercaseStatus = driver.findElement(By.xpath("//li[contains(@class,'lowercase-char')]")).isDisplayed();
+		/* Lowercase */
+		password.sendKeys("auto");
+		Thread.sleep(1000);
+		Assert.assertTrue(driver.findElement(By.xpath("//li[@class='lowercase-char completed' and text()='One lowercase character']")).isDisplayed());
+		Assert.assertFalse(createAccButtonBtn.isEnabled());
 		
-		Boolean uppercaseStatus = driver.findElement(By.xpath("//li[contains(@class,'uppercase-char')]")).isDisplayed();
+		/* Uppercase */
+		password.clear();
+		password.sendKeys("Auto");
+		Thread.sleep(1000);
+		Assert.assertTrue(driver.findElement(By.xpath("//li[@class='uppercase-char completed' and text()='One uppercase character']")).isDisplayed());
+		Assert.assertFalse(createAccButtonBtn.isEnabled());
 		
-		Boolean numberStatus = driver.findElement(By.xpath("//li[contains(@class,'number-char')]")).isDisplayed();
+		/* Number */
+		password.clear();
+		password.sendKeys("123456");
+		Thread.sleep(1000);
+		Assert.assertTrue(driver.findElement(By.xpath("//li[@class='number-char completed' and text()='One number']")).isDisplayed());
+		Assert.assertFalse(createAccButtonBtn.isEnabled());
 		
-		Boolean specialStatus = driver.findElement(By.xpath("//li[contains(@class,'special-char')]")).isDisplayed();
+		/* Special */
+		password.clear();
+		password.sendKeys("!!!@@@");
+		Thread.sleep(1000);
+		Assert.assertTrue(driver.findElement(By.xpath("//li[@class='special-char completed' and text()='One special character']")).isDisplayed());
+		Assert.assertFalse(createAccButtonBtn.isEnabled());
 		
-		Boolean eightcharStatus = driver.findElement(By.xpath("//li[contains(@class,'8-char')]")).isDisplayed();
+		/* Max-length */
+		password.clear();
+		password.sendKeys("Automation");
+		Thread.sleep(1000);
+		Assert.assertTrue(driver.findElement(By.xpath("//li[@class='8-char completed' and text()='8 characters minimum']")).isDisplayed());
+		Assert.assertFalse(createAccButtonBtn.isEnabled());
 		
-		Boolean messageStatus = driver.findElement(By.xpath("//div[contains(@class,'c-mediaBody--centered')]/h4")).isDisplayed();
-		
-		Boolean createAccButtonStatus = driver.findElement(By.xpath("//button[@id='create-account']")).isEnabled();
-		
-		Boolean marketingNewsletterStatus = driver.findElement(By.xpath("//input[@id='marketing_newsletter']")).isSelected();
-		
-		//Verify
-		Assert.assertTrue(lowercaseStatus);
-		
-		Assert.assertTrue(uppercaseStatus);
-		
-		Assert.assertTrue(numberStatus);
-		
-		Assert.assertTrue(specialStatus);
-		
-		Assert.assertTrue(eightcharStatus);
-		
-		Assert.assertFalse(messageStatus);
-		
-		Assert.assertFalse(createAccButtonStatus);
-		
-		password.sendKeys("@Bc01234");
-
-		//Wait 1s!!!
-		WebDriverWait wait = new WebDriverWait(WebDriver, 1);
-		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//div[contains(@class,'c-mediaBody--centered')]/h4")));
-		
-		Assert.assertFalse(lowercaseStatus);
-		
-		Assert.assertFalse(uppercaseStatus);
-		
-		Assert.assertFalse(numberStatus);
-		
-		Assert.assertFalse(specialStatus);
-		
-		Assert.assertFalse(eightcharStatus);
-		
-		Assert.assertTrue(messageStatus);
-		
-		Assert.assertTrue(createAccButtonStatus);
-		
-		Assert.assertFalse(marketingNewsletterStatus);
-		
-		if (!marketingNewsletterStatus) {
-			driver.findElement(By.xpath("//input[@id='marketing_newsletter']")).click();
-		}
-		
+		/* Valid */
+		password.clear();
+		password.sendKeys("Auto123!@#");
+		Thread.sleep(1000);
+		Assert.assertTrue(createAccButtonBtn.isEnabled());
 	}
 	
 	@AfterClass
