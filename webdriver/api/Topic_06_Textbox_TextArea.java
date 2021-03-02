@@ -31,7 +31,6 @@ public class Topic_06_Textbox_TextArea {
 
 	@BeforeClass
 	public void beforeClass() {
-		Random rand = new Random();
 		driver = new FirefoxDriver();
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
@@ -44,14 +43,14 @@ public class Topic_06_Textbox_TextArea {
 		state = "California";
 		pin = "999666";
 		phone = "0999666999";
-		email = "nghiatest" + rand.nextInt(999999) + "@gmail.com";
+		email = "nghiatest" + getRandomNumber() + "@gmail.com";
 
 		editAddress = "789 Suitable Address";
 		editCity = "Houston";
 		editState = "Texas";
 		editPin = "868686";
 		editPhone = "0898868686";
-		editEmail = "nghiatest" + rand.nextInt(999999) + "@gmail.com";
+		editEmail = "nghiatest" + getRandomNumber() + "@gmail.com";
 	}
 
 	@Test
@@ -173,5 +172,10 @@ public class Topic_06_Textbox_TextArea {
 		} else {
 			return false;
 		}
+	}
+	
+	public int getRandomNumber() {
+		Random rand = new Random();
+		return rand.nextInt(99999);
 	}
 }
