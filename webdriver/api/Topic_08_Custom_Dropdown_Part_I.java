@@ -22,8 +22,6 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import com.sun.org.apache.bcel.internal.generic.ExceptionThrower;
-
 public class Topic_08_Custom_Dropdown_Part_I {
 	WebDriver driver;
 	WebDriverWait explicitWait;

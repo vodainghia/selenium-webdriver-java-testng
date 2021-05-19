@@ -4,6 +4,7 @@ import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -15,6 +16,7 @@ import org.testng.annotations.Test;
 
 public class Topic_07_Default_Dropdown {
 	WebDriver driver;
+	JavascriptExecutor jsExecutor;
 	Select select; // new trong @Test, vì nó ko truyền driver mà truyền element
 	// explicitWait, jsExecutor, action thì new trong @BeforeClass vì nó truyền
 	// driver
@@ -24,6 +26,8 @@ public class Topic_07_Default_Dropdown {
 	@BeforeClass
 	public void beforeClass() {
 		driver = new FirefoxDriver();
+		
+		jsExecutor = (JavascriptExecutor) driver; //JavascriptExecutor là interface trong khi driver là class, nên chi cần ép kiểu của driver thành interface, ép kiểu tường minh 
 
 		firstName = "John";
 		lastName = "Wick";
@@ -108,14 +112,18 @@ public class Topic_07_Default_Dropdown {
 		driver.findElement(By.cssSelector("#ConfirmPassword")).sendKeys(password);
 
 		/* 3 - Đăng ký */
-		driver.findElement(By.cssSelector("#register-button")).click();
+		//driver.findElement(By.cssSelector("#register-button")).click();//do trang Nop hay bị lỗi, sẽ TẠM THỜI dùng js để click thay vì selenium, QUA FRAMEWORK SẼ TỐI ƯU KIỂU KHÁC
+		
+		jsExecutor.executeScript("arguments[0].click();", driver.findElement(By.cssSelector("#register-button")));//click bằng js sẽ luôn affect
 
 		/* 4 - Kiểm tra xuất hiện message đăng ký thành công */
 		Assert.assertEquals(driver.findElement(By.cssSelector(".result")).getText(), "Your registration completed");
 
 		/* 5 - Vào trang My Account */
-		driver.findElement(By.cssSelector(".ico-account")).click();
+		//driver.findElement(By.cssSelector(".ico-account")).click();
 
+		jsExecutor.executeScript("arguments[0].click();", driver.findElement(By.cssSelector(".ico-account")));
+		
 		/* 6 - Kiểm tra đúng với thông tin đăng ký */
 		Assert.assertTrue(driver.findElement(By.cssSelector("#gender-male")).isSelected());
 		Assert.assertEquals(driver.findElement(By.cssSelector("#FirstName")).getAttribute("value"), firstName);

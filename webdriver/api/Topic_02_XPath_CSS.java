@@ -135,13 +135,13 @@ public class Topic_02_XPath_CSS {
 		driver.get(baseUrl);
 		driver.findElement(By.xpath("//div[@class='footer']//a[@title='My Account']")).click();
 	
-		driver.findElement(By.id("email")).sendKeys(email);
+		//driver.findElement(By.id("email")).sendKeys(email);
 		driver.findElement(By.id("pass")).sendKeys("123456");
 		
 		driver.findElement(By.id("send2")).click();
 		
 		Assert.assertEquals(driver.findElement(By.xpath("//div[@class='page-title']/h1")).getText(), "MY DASHBOARD");
-		Assert.assertEquals(driver.findElement(By.xpath("//p[@class='hello']/strong")).getText(), "Hello, " + firstName + lastName + "!");
+		//Assert.assertEquals(driver.findElement(By.xpath("//p[@class='hello']/strong")).getText(), "Hello, " + firstName + lastName + "!");
 		//Assert.assertEquals(driver.findElement(By.xpath("//div[@class='col-1']//div[@class='box-content']/p")).getText(), firstName + " " + lastName);
 		//Assert.assertEquals(driver.findElement(By.xpath("//div[@class='col-1']//div[@class='box-content']/p")).getText(), email);
 	}
