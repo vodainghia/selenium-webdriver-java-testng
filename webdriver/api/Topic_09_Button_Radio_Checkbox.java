@@ -5,14 +5,9 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.remote.server.handler.FindElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -30,8 +25,6 @@ public class Topic_09_Button_Radio_Checkbox {
 
 	@BeforeClass
 	public void beforeClass() {
-		//System.setProperty("webdriver.chrome.driver",".\\browserDrivers\\chromedriver.exe");
-		//driver = new ChromeDriver();
 		driver = new FirefoxDriver();
 		
 		jsExecutor = (JavascriptExecutor) driver;
