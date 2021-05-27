@@ -55,9 +55,16 @@ public class Topic_11_User_Interaction_Part_I {
 		
 	}
 	
-	//@Test
+	@Test
 	public void TC_03_Hover() {
 		driver.get("https://hn.telio.vn/");
+		
+		action.moveToElement(driver.findElement(By.xpath("//main[@id='maincontent']//span[text()='Sữa & Sản phẩm từ sữa']"))).perform();
+		sleepInSecond(1);
+		
+		Assert.assertTrue(driver.findElement(By.xpath("//main[@id='maincontent']//a[contains(text(),'Sữa đặc')]")).isDisplayed());
+		Assert.assertTrue(driver.findElement(By.xpath("//main[@id='maincontent']//a[contains(text(),'Sữa tươi')]")).isDisplayed());
+		Assert.assertTrue(driver.findElement(By.xpath("//main[@id='maincontent']//a[contains(text(),'Sữa chua')]")).isDisplayed());
 	}
 	
 	//@Test
@@ -78,7 +85,7 @@ public class Topic_11_User_Interaction_Part_I {
 		
 	}
 	
-	@Test
+	//@Test
 	public void TC_05_Click_And_Hold() {
 		driver.get("http://jqueryui.com/resources/demos/selectable/display-grid.html");
 		
