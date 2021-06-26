@@ -4,12 +4,9 @@ import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -17,10 +14,8 @@ import org.testng.annotations.Test;
 
 public class Topic_13_Iframe_Windows {
 	WebDriver driver;
-	Actions action;
 	String projectPath = System.getProperty("user.dir");
 	String osName = System.getProperty("os.name");
-	JavascriptExecutor jsExecutor;
 	
 	@BeforeClass
 	public void beforeClass() {
@@ -34,8 +29,6 @@ public class Topic_13_Iframe_Windows {
 		
 		driver = new ChromeDriver();
 		//driver = new FirefoxDriver();
-		action = new Actions(driver);
-		jsExecutor = (JavascriptExecutor) driver;
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
 
@@ -98,7 +91,7 @@ public class Topic_13_Iframe_Windows {
 	}
 
 	//Part II: Windows/Tabs
-	@Test
+	//@Test
 	public void TC_03_Github() {
 		driver.get("https://automationfc.github.io/basic-form/index.html");
 		
@@ -147,7 +140,7 @@ public class Topic_13_Iframe_Windows {
 		
 	}
 	
-	//@Test
+	@Test
 	public void TC_04_Kyna() {
 		driver.get("https://kyna.vn/");
 		
@@ -161,7 +154,7 @@ public class Topic_13_Iframe_Windows {
 		
 		driver.findElement(By.xpath("//div[@id='k-footer']//a[text()='VietnamWorks']")).click();
 
-		switchToWindowByTitle("Tuyển dụng, việc làm, tìm việc làm nhanh mới nhất  | VietnamWorks");
+		switchToWindowByTitle("Tuyển dụng, việc làm, tìm việc làm nhanh mới nhất | VietnamWorks");
 		
 		driver.findElement(By.xpath("//input[@id='search-bar-input']")).sendKeys("Automation Test");
 		sleepInSecond(3);
@@ -174,7 +167,7 @@ public class Topic_13_Iframe_Windows {
 		
 		Assert.assertTrue(driver.findElement(By.cssSelector(".btn-register1")).isDisplayed());
 		
-		closeAllTabWithoutParent(parentID);
+		//closeAllTabWithoutParent(parentID);
 	}
 	
 	//@Test

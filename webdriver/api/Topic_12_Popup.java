@@ -4,11 +4,9 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -16,10 +14,8 @@ import org.testng.annotations.Test;
 
 public class Topic_12_Popup {
 	WebDriver driver;
-	Actions action;
 	String projectPath = System.getProperty("user.dir");
 	String osName = System.getProperty("os.name");
-	JavascriptExecutor jsExecutor;
 	
 	@BeforeClass
 	public void beforeClass() {
@@ -30,8 +26,6 @@ public class Topic_12_Popup {
 		}
 		
 		driver = new FirefoxDriver();
-		action = new Actions(driver);
-		jsExecutor = (JavascriptExecutor) driver;
 		driver.manage().timeouts().implicitlyWait(defaultTimeout, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
 
