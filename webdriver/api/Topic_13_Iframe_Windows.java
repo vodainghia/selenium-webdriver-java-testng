@@ -6,7 +6,6 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -136,15 +135,13 @@ public class Topic_13_Iframe_Windows {
 		
 		//Switch to Lazada tab
 		switchToWindowByTitle("Shopping online - Buy online on Lazada.vn");
-		
-		
 	}
 	
 	@Test
 	public void TC_04_Kyna() {
 		driver.get("https://kyna.vn/");
 		
-		String parentID = driver.getWindowHandle();
+		//String parentID = driver.getWindowHandle();
 		
 		driver.findElement(By.xpath("//div[@id='k-footer']//img[@alt='facebook']")).click();
 		
