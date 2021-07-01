@@ -75,7 +75,7 @@ public class Topic_16_Wait_II_FindElement {
 		 * chờ hết timeout của implicit
 		 * Trong thời gian chờ cứ mỗi 0.5s sẽ tìm lại 1 lần
 		 * Khi chờ hết timeout của implicit thì sẽ KHÔNG đánh fail TC
-		 * Trả về 1 list empty [rỗng/ko có phần tử (web element)] nào hết
+		 * Trả về 1 list empty [rỗng/ko có phần tử (web element)]
 		 * Chuyển qua step tiếp theo
 		 */
 		System.out.println(driver.findElements(By.id("address")).size()); //bằng 0, KHÔNG làm failed TC
