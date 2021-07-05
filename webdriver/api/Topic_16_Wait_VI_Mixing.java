@@ -17,14 +17,6 @@ public class Topic_16_Wait_VI_Mixing {
 	WebDriverWait explicitWait;
 	String projectPath = System.getProperty("user.dir");
 	String osName = System.getProperty("os.name");
-	By startButton = By.cssSelector("#start>button");
-	By loadingIcon = By.cssSelector("div#loading");
-	By helloWorldText = By.xpath("//h4[text()='Hello World!']");
-	String cloudFileName = "cloud.jpg";
-	String cloudFilePath = projectPath + "\\uploadFiles\\" + cloudFileName;
-	String sasnarFileName = "nar-sas.jpg";
-	String sasnarFilePath = projectPath + "\\uploadFiles\\" + sasnarFileName;
-	
 	
 	@BeforeClass
 	public void beforeClass() {
@@ -113,7 +105,14 @@ public class Topic_16_Wait_VI_Mixing {
 		
 		driver.get("https://www.facebook.com/");
 		
-		//Kết quả chạy sẽ ra 5s, do đang tìm bằng xpath (chỉ là 1 đoạn string), implicit bằng 0s nhưng explicit bằng 5s, cần phải tìm tuần tự mỗi 0.5s đến khi cả implicit và explicit đều xong thì mới ngừng (5s).
+		/* Kết quả chạy sẽ ra 5s, do đang tìm bằng xpath (chỉ là 1 đoạn string), implicit bằng 0s nhưng explicit bằng 5s,
+		 * cần phải tìm tuần tự mỗi 0.5s đến khi cả implicit và explicit đều xong thì mới ngừng (5s). 
+		 * implicit nằm trong hàm visibilityOfElementLocated, mà hàm visibilityOfElementLocated đang bị chi phối bởi explicit 
+		 * nên explicit (5s) chưa chạy xong thì TC chưa dừng được, dù implicit là 0s.
+		 * Tương tự như TC số 3, với implicit = 0 và explicit = 5s => Ở giây 0s implicit đã throw ra exception, nhưng lúc này explicit sẽ chạy
+		 * và chạy cho tới hết 5s, thế nên step đó sẽ chạy 5s tổng cộng.
+		 */
+		
 		showDateTimeNow("Start explicit: ");
 		try {
 			explicitWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='wrong_id']")));
@@ -130,7 +129,13 @@ public class Topic_16_Wait_VI_Mixing {
 		
 		driver.get("https://www.facebook.com/");
 		
-		//Kết quả chạy sẽ ra 0s, do lúc vừa chạy ko tìm được WebElement (lưu ý là đang tìm theo WebElement) mà lại ko có set implicit (findElement) nên default = 0, dừng chạy luôn trong giây 0s.
+		/* Kết quả chạy sẽ ra 0s, do lúc vừa chạy ko tìm được WebElement (lưu ý là đang tìm theo WebElement) mà lại ko có set implicit (findElement) nên default = 0,
+		 * dừng chạy luôn trong giây 0s.
+		 * By.xpath("//input[@id='wrong_id']"): vẫn chạy được bình thường
+		 * driver.findElement(By.xpath("//input[@id='wrong_id']")): bị fail do ko tìm thấy WebElement, với implicit = 0s, đây như là 1 step độc lập so với visibilityOf().
+		 * visibilityOf(): chưa được chạy tới
+		 */
+
 		showDateTimeNow("Start explicit: ");
 		try {
 			explicitWait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//input[@id='wrong_id']"))));
