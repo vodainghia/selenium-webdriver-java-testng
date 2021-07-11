@@ -41,7 +41,7 @@ public class Topic_16_Wait_VII_Fluent {
 		
 	}
 	
-	//@Test
+	@Test
 	public void TC_01() {
 		driver.get("https://automationfc.github.io/fluent-wait/");
 		
@@ -63,7 +63,7 @@ public class Topic_16_Wait_VII_Fluent {
 		
 	}
 	
-	//@Test
+	@Test
 	public void TC_02() {
 		driver.get("http://the-internet.herokuapp.com/dynamic_loading/2");
 		
@@ -97,6 +97,11 @@ public class Topic_16_Wait_VII_Fluent {
 		driver.findElement(By.id("empsearch_employee_name_empName")).sendKeys("Peter Mac Anderson");
 		
 		driver.findElement(By.id("searchBtn")).click();
+		
+		//Wait page ready (JQuery/Ajax loading)
+		Assert.assertTrue(isJQueryLoadedSuccess(driver));
+				
+		Assert.assertEquals(driver.findElement(By.xpath("//table[@id='resultTable']//tr/td[3]/a")).getText(), "Peter Mac");
 	}
 	
 	long timeout = 15;

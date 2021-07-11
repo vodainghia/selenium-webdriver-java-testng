@@ -1,14 +1,13 @@
 package javaTester;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public class Topic_07_Loop_Statement {
 
 	public static void main(String[] args) {
 		//
-		String[] studentName = {"Trường", "Tiến", "Thơm", "Thu"};
+		//String[] studentName = {"Trường", "Tiến", "Thơm", "Thu"};
 		
 //		for(int i = 0; i < studentName.length; i++) {
 //			System.out.println(studentName[i]);

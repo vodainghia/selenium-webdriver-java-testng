@@ -159,6 +159,7 @@ public class Topic_11_User_Interaction_Part_II {
 	}
 	
 	//Dùng thư viện Robot, NOTE: ĐỂ DÙNG HÀM NÀY THÌ CẦN CHỈNH LẠI SCALE MÀN HÌNH THÀNH 100% (MẶC ĐỊNH LÀ 125%)
+	@SuppressWarnings("deprecation")
 	public void drag_the_and_drop_html5_by_xpath(String sourceLocator, String targetLocator) throws AWTException {
 
 		WebElement source = driver.findElement(By.xpath(sourceLocator));
