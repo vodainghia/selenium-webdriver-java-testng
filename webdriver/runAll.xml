@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="Run all">
+
+	<suite-files>
+		<suite-file path="runTestcases-Group.xml"/>
+		<suite-file path="runTestcases-MultiBrowsers.xml"/>
+		<suite-file path="runTestcases-Parallel.xml"/>
+	</suite-files>
+	
+</suite>
