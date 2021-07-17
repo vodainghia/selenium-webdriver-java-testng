@@ -205,9 +205,10 @@ public class Topic_13_Iframe_Windows {
 		Set<String> allTabIDs = driver.getWindowHandles();
 		
 		for (String id : allTabIDs) {
-			if (!id.equals(parentID))
-			driver.switchTo().window(id);
-			driver.close(); //close thì đóng tab/window đang đứng, quit thì đóng toàn bộ tabs/windows
+			if (!id.equals(parentID)) {
+				driver.switchTo().window(id);
+				driver.close(); //close thì đóng tab/window đang đứng, quit thì đóng toàn bộ tabs/windows
+			}
 		}
 		driver.switchTo().window(parentID);
 	}
